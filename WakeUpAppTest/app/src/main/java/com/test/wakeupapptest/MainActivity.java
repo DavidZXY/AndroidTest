@@ -8,12 +8,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+/**
+ * @author DavidZXY
+ */
 public class MainActivity extends AppCompatActivity {
 
     private Button mWakeUpButton;
     private EditText mUsernameEditText;
-    private EditText mPasswordEditText;
+    private EditText mBusinessNumberEditText;
+    private EditText mUserCodeEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,35 +45,46 @@ public class MainActivity extends AppCompatActivity {
 //
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                startActivity(intent);
-                wakeUp("0007", "SGD201912051000290", "zhouxinyu");
+                String userName = mUsernameEditText.getText().toString();
+                String userCode = mUserCodeEditText.getText().toString();
+                String businessNumber = mBusinessNumberEditText.getText().toString();
+                wakeUp(userName, userCode, businessNumber);
             }
         });
     }
 
     private void initView() {
         mUsernameEditText = findViewById(R.id.username_edit_text);
-        mPasswordEditText = findViewById(R.id.password_edit_text);
+        mBusinessNumberEditText = findViewById(R.id.business_number_edit_text);
+        mUserCodeEditText = findViewById(R.id.user_code_edit_text);
+
         mWakeUpButton  = findViewById(R.id.wake_up_button);
     }
 
     /**
      * 唤醒中诚信托App
-     * @param agentCode 客户编号
+     * @param userCode 客户编号
      * @param businessNumber 预约编号
-     * @param userNo 登录名
+     * @param userName 登录名
      */
-    private void wakeUp(String agentCode, String businessNumber, String userNo) {
+    private void wakeUp(String userName, String userCode, String businessNumber) {
         Intent intent = new Intent();
-        ComponentName componentName = new ComponentName("com.sinosoft.cs", "com.sinosoft.cs.main.MainActivity");
+        ComponentName componentName = new ComponentName("com.test.roomtest", "com.test.roomtest.MainActivity");
         intent.setComponent(componentName);
 
         Bundle bundle = new Bundle();
-        bundle.putString("agentCode", agentCode);
-        bundle.putString("businum", businessNumber);
-        bundle.putString("userNo", userNo);
+        bundle.putString("userCode", userCode);
+        bundle.putString("businessNumber", businessNumber);
+        bundle.putString("userName", userName);
         intent.putExtras(bundle);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(this, "WakeUp" + "  " + getTaskId(), Toast.LENGTH_SHORT).show();
     }
 }

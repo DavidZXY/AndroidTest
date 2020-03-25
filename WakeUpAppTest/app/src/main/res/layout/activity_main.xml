@@ -9,22 +9,29 @@
 
     <EditText
         android:id="@+id/username_edit_text"
-        android:text="zhouxinyu"
-        android:hint="username"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="username"
+        android:text="zhouxinyu" />
 
     <EditText
-        android:hint="password"
-        android:text="123"
-        android:id="@+id/password_edit_text"
+        android:id="@+id/business_number_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="business number"
+        android:text="123456" />
+
+    <EditText
+        android:id="@+id/user_code_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="user number"
+        android:text="0007" />
 
     <Button
         android:id="@+id/wake_up_button"
-        android:text="wake up"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="wake up" />
 
 </LinearLayout>
